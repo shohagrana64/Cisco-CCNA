@@ -66,7 +66,33 @@ ip nat inside
 int fa 0/1
 ip nat outside
 ```
+Dynamic nat configuration needs Access Control List (ACL) to be configured beforehand. It will need the nat list and acl list to configure dynamic nat.
 
+1. Configure ACL
+```
+access-list 1 permit [Internal NETWORK-IP usually summary ip] [wildcard-mask]
+```
+
+2. Configure NAT POOL
+
+```
+ip nat pool NAT_POOL 209.165.200.194 209.165.200.206 255.255.255.240
+```
+
+3. Configure Dynamic NAT
+
+```
+ip nat inside source list 1 pool NAT_POOL overload
+```
+
+### Static Default route on edge router
+
+```
+ip route 0.0.0.0 0.0.0.0 fa0/0
+ip route 0.0.0.0 0.0.0.0 [interface or next hop ip]
+```
+
+Also need a static route on ISP which has the NAT address of the network
 ## Switch Configurations
 
 ### VLAN basic
