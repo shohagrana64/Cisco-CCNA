@@ -17,3 +17,24 @@ line vty 0 4
 password cisco
 login
 ```
+## Router Configurations
+
+### For Interfaces
+```
+int fa 0/1
+no shut
+ip address 10.82.1.48 255.255.255.0
+```
+
+### For subinterfaces
+```
+int fa 0/1.10
+encapsulation dot1Q 10
+ip address 10.82.1.48 255.255.255.0
+
+// native vlan
+
+int fa 0/1.99
+encapsulation dot1Q 99 native
+ip address 10.82.1.1 255.255.255.0
+```
