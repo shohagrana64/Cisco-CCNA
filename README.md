@@ -20,6 +20,7 @@ login
 ## Router Configurations
 
 ### For Interfaces
+
 ```
 int fa 0/1
 no shut
@@ -27,6 +28,7 @@ ip address 10.82.1.48 255.255.255.0
 ```
 
 ### For subinterfaces
+
 ```
 int fa 0/1.10
 encapsulation dot1Q 10
@@ -37,4 +39,34 @@ ip address 10.82.1.48 255.255.255.0
 int fa 0/1.99
 encapsulation dot1Q 99 native
 ip address 10.82.1.1 255.255.255.0
+```
+
+## Switch Configurations
+
+### VLAN basic
+
+```
+vlan 10
+name student
+```
+### VLAN ip
+
+```
+int vlan 10
+ip address 192.168.1.10 255.255.255.0
+exit
+ip default gateway 192.168.1.1 255.255.255.0
+```
+
+### Switchport access to end devices and trunk to routers and switches
+
+```
+int g0/1
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,99
+switchport trunk native vlan 99
+
+int fa0/1
+switchport mode access
+switchport access vlan 10
 ```
