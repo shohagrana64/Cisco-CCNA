@@ -50,6 +50,22 @@ router ospf 1
 [network ip-address wildcard-mask area 0]
 network 192.168.0.0 0.0.255.255 area 0
 ```
+### NAT
+
+NAT needs to be configured on the edge router connecting to the internet service provider.
+
+Static NAT Configurations can be done to Servers that need a dedicated ip address to communicate with the internet.
+ip nat outside for connection with the ISP. IP nat inside is for the interfaces that are connected to the edge router from within the network.
+```
+ip nat inside source static INTERNAL-IP PUBLIC-IP
+
+int fa0/0
+ip nat inside
+
+
+int fa 0/1
+ip nat outside
+```
 
 ## Switch Configurations
 
