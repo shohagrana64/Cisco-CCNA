@@ -41,6 +41,16 @@ encapsulation dot1Q 99 native
 ip address 10.82.1.1 255.255.255.0
 ```
 
+### OSPF
+
+We have to add all the networks connected to each of the routers
+
+```
+router ospf 1
+[network ip-address wildcard-mask area 0]
+network 192.168.0.0 0.0.255.255 area 0
+```
+
 ## Switch Configurations
 
 ### VLAN basic
